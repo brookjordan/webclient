@@ -17,6 +17,7 @@
                 </form>
             </template>
             <template #right>
+                <button class="playlist-button" @click="showImportPlaylistsModal()">Import from iTunes</button>
                 <button class="playlist-button" @click="showNewPlaylistModal()"><PlusSvg /> New Playlist</button>
             </template>
         </Header>
@@ -51,7 +52,7 @@ import NoItems from '@/components/shared/NoItems.vue'
 import useModalStore from '@/stores/modal'
 
 const pStore = usePStore()
-const { showNewPlaylistModal } = useModalStore()
+const { showNewPlaylistModal, showImportPlaylistsModal } = useModalStore()
 
 const input = ref('')
 const query = debouncedRef(input, 300)

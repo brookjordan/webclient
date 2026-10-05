@@ -1,5 +1,5 @@
 <template>
-    <div class="mixheader" v-if="mix.title">
+    <div v-if="mix.title" class="mixheader">
         <MixImage :mix="mix" :on_header="true" />
         <div class="mixinfo">
             <div class="header_type">{{ mix.extra['type'] }} mix</div>

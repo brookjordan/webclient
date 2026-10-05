@@ -1,13 +1,13 @@
 <template>
     <div class="pairing">
         <div
+            v-if="qrLoaded"
             ref="qrcode"
             class="qrcode"
-            v-if="qrLoaded"
         ></div>
         <div
-            class="loader"
             v-if="!qrLoaded"
+            class="loader"
         >
             <div class="spinner"></div>
         </div>
