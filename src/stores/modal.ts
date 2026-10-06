@@ -12,6 +12,7 @@ export enum ModalOptions {
     saveFolderAsPlaylist,
     login,
     settings,
+    importPlaylists,
 }
 
 export default defineStore('newModal', {
@@ -30,6 +31,9 @@ export default defineStore('newModal', {
         },
         showNewPlaylistModal(props: any = {}) {
             this.showModal(ModalOptions.newPlaylist, props)
+        },
+        showImportPlaylistsModal() {
+            this.showModal(ModalOptions.importPlaylists)
         },
         showCollectionModal(props: any = {}) {
             this.showModal(ModalOptions.page, props)

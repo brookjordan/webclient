@@ -1,6 +1,6 @@
 <template>
-    <Profile :adding_user="true" v-if="showAddUser" @user-added="userAdded" />
-    <div class="accountsettings" v-else>
+    <Profile v-if="showAddUser" :adding_user="true" @user-added="userAdded" />
+    <div v-else class="accountsettings">
         <div class="asettings">
             <ToggleSetting
                 v-for="s in account_settings"
@@ -20,10 +20,10 @@
         </div>
         <TransitionGroup name="list">
             <div
-                class="usercard rounded"
-                v-auto-animate
                 v-for="(user, index) in users"
                 :key="user.id"
+                v-auto-animate
+                class="usercard rounded"
                 :class="{
                     selected: user.id === selectedUser,
                     secondchild: index == 1,
@@ -36,16 +36,16 @@
                             {{ user.firstname || user.username }}
                         </div>
                         <div class="roles">
-                            <span class="role" v-for="role in user.roles">{{ role }}</span>
+                            <span v-for="role in user.roles" class="role">{{ role }}</span>
                         </div>
                     </div>
                     <DeleteSvg
-                        class="delete"
                         v-if="auth.user.username !== user.username"
+                        class="delete"
                         @click.stop="() => deleteUser(user)"
                     />
                 </div>
-                <div class="usettins" v-if="user.id === selectedUser">
+                <div v-if="user.id === selectedUser" class="usettins">
                     <ToggleSetting
                         v-for="setting in usettings"
                         :key="setting.title"

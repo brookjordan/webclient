@@ -286,3 +286,29 @@ export async function pinUnpinPlaylist(pid: number) {
 
     return false
 }
+
+export interface ImportPlaylistsResult {
+    created: { id: number; name: string; trackcount: number }[]
+    skipped: { name: string; reason: string }[]
+    unmatched: number
+}
+
+export async function importPlaylists(form: FormData) {
+    const { data, status } = await useAxios({
+        url: basePlaylistUrl + '/import',
+        method: 'POST',
+        props: form,
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        },
+    })
+
+    if (status === 200) {
+        return data as ImportPlaylistsResult
+    }
+
+    const message = (data && data.error) || 'Could not import playlists'
+    new Notification(message, NotifType.Error)
+
+    return null
+}

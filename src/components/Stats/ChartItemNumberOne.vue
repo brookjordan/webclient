@@ -19,7 +19,7 @@
                 <div class="helptext">
                     {{ item.help_text }}
                 </div>
-                <div class="artist" v-if="name !== 'artist'">
+                <div v-if="name !== 'artist'" class="artist">
                     <ArtistName
                     :artists="item.artists ? item.artists : item.albumartists"
                     :albumartists="item.albumartists"

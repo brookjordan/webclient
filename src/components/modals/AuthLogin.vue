@@ -1,13 +1,13 @@
 <template>
-    <div class="loginmodal" v-auto-animate>
+    <div v-auto-animate class="loginmodal">
         <div class="head" :class="{ selected }">
             <button
                 class="back rounded-sm"
                 title="Back to selection"
-                @click="resetSelected"
                 :style="{
                     visibility: shownUsers.length > 1 ? 'visible' : 'hidden',
                 }"
+                @click="resetSelected"
             >
                 <span>back</span> <ArrowSvg />
             </button>
@@ -16,24 +16,24 @@
         </div>
 
         <div class="alcontent">
-            <div class="helptext" v-if="!selected">
+            <div v-if="!selected" class="helptext">
                 <div class="h2">Welcome back</div>
             </div>
-            <div class="selected-user" v-if="selected">
+            <div v-if="selected" class="selected-user">
                 <User
                     :user="selected.username === '' ? { id: 0, username: username, firstname: '' } : selected"
                     :selected="true"
                 />
             </div>
 
-            <div class="userlist" v-auto-animate v-else>
-                <User v-for="user in shownUsers" @click="setUser(user)" :user="user" :key="user.id" />
+            <div v-else v-auto-animate class="userlist">
+                <User v-for="user in shownUsers" :key="user.id" :user="user" @click="setUser(user)" />
             </div>
-            <form class="passinput" v-if="selected" v-auto-animate @submit.prevent="loginUser">
+            <form v-if="selected" v-auto-animate class="passinput" @submit.prevent="loginUser">
                 <!-- Only show username input if there's no user list -->
                 <Input
-                    placeholder="Enter username"
                     v-if="selected.username === ''"
+                    placeholder="Enter username"
                     input-id="loginuserinput"
                     @input="(input: string) => username = input"
                 />
